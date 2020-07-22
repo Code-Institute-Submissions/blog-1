@@ -14,25 +14,44 @@
   <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 
   <link rel="stylesheet" href="{{ url_for('static', filename='styles/main.css') }}" type="text/css">
-
+  {% if title %}
+  <title>Blog - {{ title }}</title>
+  {% else %}
   <title>Blog</title>
+  {% endif %}
 </head>
 
 <body>
+  <!-- Header/Navigation -->
   <nav class="navbar navbar-expand-sm navbar-light shadow-sm bg-white">
     <div class="container">
       <a href="{{ url_for('main.home') }}" class="navbar-brand mx-auto">Blog</a>
       <div class="collapse navbar-collapse">
         <ul class="navbar-nav ml-auto">
-          <li class="nav-item"><a class="nav-link" href="">Sign-up</a></li>
+          <li class="nav-item"><a class="nav-link" href="{{ url_for('users.register') }}">Sign-up</a></li>
           <li class="nav-item"><a class="nav-link" href="{{ url_for('users.login') }}">Login</a></li>
         </ul>
       </div>
     </div>
   </nav>
 
-  {% block content %}
-  {% endblock content %}  
+  <!-- Main Content -->
+  <main>
+    
+    <!-- Display any flashed messages from routes. -->
+    {% with messages = get_flashed_messages(with_categories=true) %}
+    {% if messages %}
+    {% for category, messages in messages %}
+    <div class="alert alert-{{ category }}">{{ message }}</div>
+    {% endfor %}
+    {% endif %}
+    {% endwith %}
+
+    <!-- Content Block -->
+    {% block content %}
+    {% endblock content %}
+  </main>
+
 
   <!-- Optional JavaScript -->
   <!-- jQuery first, then Popper.js, then Bootstrap JS -->
