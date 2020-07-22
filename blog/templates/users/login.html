@@ -1,7 +1,6 @@
 {% extends "layout.html" %}
 
 {% block content %}
-
 <!-- Login Form -->
 <div class="container login-form">
     <div class="row">
@@ -12,7 +11,6 @@
                     <legend class="text-center border-bottom mb-3 pb-3">Login</legend>
                     <div class="form-group">
                         {{ form.email.label(class="form-control-label") }}
-
                         <!-- Display any error occured during data validation. -->
                         {% if form.email.errors %}
                         {{ form.email(class="form-control is-invalid") }}

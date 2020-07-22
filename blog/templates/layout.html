@@ -37,16 +37,14 @@
 
   <!-- Main Content -->
   <main>
-    
     <!-- Display any flashed messages from routes. -->
     {% with messages = get_flashed_messages(with_categories=true) %}
     {% if messages %}
-    {% for category, messages in messages %}
-    <div class="alert alert-{{ category }}">{{ message }}</div>
+    {% for category, message in messages %}
+    <div class="alert alert-{{ category }} alert-custom">{{ message }}</div>
     {% endfor %}
     {% endif %}
     {% endwith %}
-
     <!-- Content Block -->
     {% block content %}
     {% endblock content %}
