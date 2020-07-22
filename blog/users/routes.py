@@ -1,4 +1,5 @@
 from flask import Blueprint, render_template, flash, redirect, url_for
+from flask_login import login_user
 from blog import bcrypt
 from blog.users.forms import LoginForm, RegisterForm
 from blog.models import User
@@ -11,7 +12,13 @@ users = Blueprint("users", __name__)
 def login():
     login_form = LoginForm()
     if login_form.validate_on_submit():
-        pass
+        # Login User if User exists in database and credentials are correct.
+        user = User.objects(email=login_form.email.data.lower()).first()
+        if user and bcrypt.check_password_hash(user.password, login_form.password.data):
+            login_user(user)
+            return redirect(url_for("main.home"))
+        else:
+            flash("Account has been successfully created. You can now login.", "success")
     return render_template("users/login.html", title="Login", form=login_form)
 
 # User register route.
