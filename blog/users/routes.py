@@ -1,5 +1,5 @@
 from flask import Blueprint, render_template, flash, redirect, url_for
-from flask_login import login_user
+from flask_login import login_user, logout_user, login_required
 from blog import bcrypt
 from blog.users.forms import LoginForm, RegisterForm
 from blog.models import User
@@ -39,3 +39,10 @@ def register():
         flash("Account has been successfully created. You can now login.", "success")
         return redirect(url_for("users.login"))
     return render_template("users/register.html", title="Register", form=register_form)
+
+# User logout route.
+@users.route("/logout")
+@login_required
+def logout():
+    logout_user()
+    return redirect(url_for("users.login"))
