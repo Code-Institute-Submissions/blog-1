@@ -1,6 +1,7 @@
 from flask_wtf import FlaskForm
 from wtforms import StringField, PasswordField, SubmitField
-from wtforms.validators import DataRequired, Email, Length, EqualTo
+from wtforms.validators import DataRequired, Email, Length, EqualTo, ValidationError
+from blog.models import User
 
 # User login form with data validation.
 class LoginForm(FlaskForm):
@@ -33,3 +34,15 @@ class RegisterForm(FlaskForm):
         validators=[DataRequired(), EqualTo("password", message="Passwords didn't match.")]
     )
     submit = SubmitField("Sign up")
+
+    # Check if User with given Username already exists.
+    def validate_username(self, username):
+        existing_user = User.objects(username=username.data).first()
+        if existing_user:
+            raise ValidationError("This username is already taken. Please choose another one.")
+
+    # Check if User with given Email already exists.
+    def validate_email(self, email):
+        existing_user = User.objects(email=email.data.lower()).first()
+        if existing_user:
+            raise ValidationError("This email is already taken. Please choose another one.")

@@ -24,7 +24,7 @@ def register():
         # Creating new User.
         new_user = User(
             username=register_form.username.data,
-            email=register_form.email.data,
+            email=register_form.email.data.lower(),
             password=hashed_password
         )
         # Saving User to database.
