@@ -18,7 +18,7 @@ def login():
             login_user(user)
             return redirect(url_for("main.home"))
         else:
-            flash("Account has been successfully created. You can now login.", "success")
+            flash("Login unsuccessful. Check email and password.", "danger")
     return render_template("users/login.html", title="Login", form=login_form)
 
 # User register route.
