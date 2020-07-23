@@ -10,9 +10,6 @@
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css"
     integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
 
-  <!-- Google Material Icons -->
-  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-
   <link rel="stylesheet" href="{{ url_for('static', filename='styles/main.css') }}" type="text/css">
   {% if title %}
   <title>Blog - {{ title }}</title>
@@ -30,10 +27,25 @@
         <ul class="navbar-nav ml-auto">
           <!-- Show links according to user authentication. -->
           {% if current_user.is_authenticated %}
-          <li class="nav-item"><a class="nav-link" href="{{ url_for('users.logout') }}">Logout</a></li>
+          <li class="nav-item">
+            <a class="nav-link" href="{{ url_for('users.account', user_id=current_user.id) }}">
+              <!-- Display current logged in user profile picture. -->
+              <img src="{{ url_for('static', filename='profile_pics/' + current_user.profile_pic) }}" alt="..."
+                class="img-thumbnail rounded-circle" width=35>
+            </a>
+          </li>
+          <li class="nav-item my-auto">
+            <a class="nav-link" href="{{ url_for('users.logout') }}">
+              <i class="fas fa-sign-in-alt mr-1"></i>Logout</a>
+          </li>
           {% else %}
-          <li class="nav-item"><a class="nav-link" href="{{ url_for('users.register') }}">Sign-up</a></li>
-          <li class="nav-item"><a class="nav-link" href="{{ url_for('users.login') }}">Login</a></li>
+          <li class="nav-item">
+            <a class="nav-link" href="{{ url_for('users.register') }}">
+              <i class="fas fa-user-circle mr-1"></i>Sign-up</a></li>
+          <li class="nav-item">
+            <a class="nav-link" href="{{ url_for('users.login') }}">
+              <i class="fas fa-sign-in-alt mr-1"></i>Login</a>
+          </li>
           {% endif %}
         </ul>
       </div>
@@ -73,6 +85,8 @@
   <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"
     integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI"
     crossorigin="anonymous"></script>
+  <!-- FontAwesome -->
+  <script src="https://kit.fontawesome.com/0d94540b0f.js" crossorigin="anonymous"></script>
 </body>
 
 </html>

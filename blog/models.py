@@ -7,6 +7,7 @@ class User(UserMixin, db.Document):
     username = db.StringField(required=True, max_length=32)
     email = db.StringField(required=True)
     password = db.StringField(required=True, max_length=255)
+    profile_pic = db.StringField(default="default.png")
 
 # Load User to current session.
 @login_manager.user_loader

@@ -1,7 +1,7 @@
 from flask import Blueprint, render_template, flash, redirect, url_for
 from flask_login import login_user, logout_user, login_required
 from blog import bcrypt
-from blog.users.forms import LoginForm, RegisterForm
+from blog.users.forms import LoginForm, RegisterForm, UpdateAccountForm
 from blog.models import User
 
 # Exporting user routes.
@@ -46,3 +46,11 @@ def register():
 def logout():
     logout_user()
     return redirect(url_for("users.login"))
+
+@users.route("/account/<user_id>", methods=["GET", "POST"])
+@login_required
+def account(user_id):
+    update_form = UpdateAccountForm()
+    if update_form.validate_on_submit():
+        pass
+    return render_template("users/account.html", title="Account", form=update_form)
