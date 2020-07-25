@@ -55,6 +55,7 @@ class UpdateAccountForm(FlaskForm):
         "Username",
         validators=[DataRequired(), Length(min=5, max=32)]
     )
+    profile_pic = FileField(validators=[FileAllowed(["jpg", "png"])])
     submit = SubmitField("Update")
 
     # Check if User with given Username already exists.

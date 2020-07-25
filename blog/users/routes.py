@@ -54,6 +54,9 @@ def logout():
 def account():
     update_form = UpdateAccountForm()
     if update_form.validate_on_submit():
+        if update_form.profile_pic.data:
+            profile_pic = save_profile_pic(update_form.profile_pic.data)
+            current_user.profile_pic = profile_pic
         current_user.username = update_form.username.data
         current_user.save()
         return redirect(url_for("users.account"))
