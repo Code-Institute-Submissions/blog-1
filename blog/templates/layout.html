@@ -28,10 +28,8 @@
           <!-- Show links according to user authentication. -->
           {% if current_user.is_authenticated %}
           <li class="nav-item">
-            <a class="nav-link" href="{{ url_for('users.account', user_id=current_user.id) }}">
-              <!-- Display current logged in user profile picture. -->
-              <img src="{{ url_for('static', filename='profile_pics/' + current_user.profile_pic) }}" alt="..."
-                class="img-thumbnail rounded-circle" width=35>
+            <a class="nav-link" href="{{ url_for('users.account') }}">
+              Account
             </a>
           </li>
           <li class="nav-item my-auto">

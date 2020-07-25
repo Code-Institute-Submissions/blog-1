@@ -1,4 +1,5 @@
 from flask_wtf import FlaskForm
+from flask_login import current_user
 from flask_wtf.file import FileField , FileAllowed
 from wtforms import StringField, PasswordField, SubmitField
 from wtforms.validators import DataRequired, Email, Length, EqualTo, ValidationError
@@ -48,13 +49,17 @@ class RegisterForm(FlaskForm):
         if existing_user:
             raise ValidationError("This email is already taken. Please choose another one.")
 
-# Update Account form.
+# Update account info.
 class UpdateAccountForm(FlaskForm):
     username = StringField(
         "Username",
         validators=[DataRequired(), Length(min=5, max=32)]
     )
-    profile_pic = FileField(
-        "Profile picture",
-         validators=[FileAllowed(["jpg", "png"])])
     submit = SubmitField("Update")
+
+    # Check if User with given Username already exists.
+    def validate_username(self, username):
+        if username.data != current_user.username:
+            existing_user = User.objects(username=username.data).first()
+            if existing_user:
+                raise ValidationError("This username is already taken. Please choose another one.")

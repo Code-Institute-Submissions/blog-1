@@ -1,7 +1,8 @@
-from flask import Blueprint, render_template, flash, redirect, url_for
-from flask_login import login_user, logout_user, login_required
+from flask import Blueprint, render_template, flash, redirect, url_for, request
+from flask_login import login_user, logout_user, login_required, current_user
 from blog import bcrypt
 from blog.users.forms import LoginForm, RegisterForm, UpdateAccountForm
+from blog.users.utils import save_profile_pic
 from blog.models import User
 
 # Exporting user routes.
@@ -47,10 +48,16 @@ def logout():
     logout_user()
     return redirect(url_for("users.login"))
 
-@users.route("/account/<user_id>", methods=["GET", "POST"])
+# User update route.
+@users.route("/account", methods=["GET", "POST"])
 @login_required
-def account(user_id):
+def account():
     update_form = UpdateAccountForm()
     if update_form.validate_on_submit():
-        pass
-    return render_template("users/account.html", title="Account", form=update_form)
+        current_user.username = update_form.username.data
+        current_user.save()
+        return redirect(url_for("users.account"))
+    elif request.method == "GET":
+        update_form.username.data = current_user.username
+    profile_pic = url_for("static", filename="profile_pics/" + current_user.profile_pic)
+    return render_template("users/account.html", title="Account", profile_pic=profile_pic, form=update_form)
