@@ -1,0 +1,54 @@
+.navbar {
+    display: flex;
+    align-items: center;
+    width: 100% - 1rem;
+    justify-content: space-between;
+    background-color: #fff;  
+}
+
+.navbar-void {
+}
+
+.navbar-logo {
+    font-family: 'Dancing Script', cursive!important;
+}
+
+.nav-btn {
+    width: 1.5rem;
+    height: 1.5rem;
+    cursor: pointer;
+}
+
+.nav-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 0;
+    height: 100vh;
+    background-color: #fff;
+    z-index: 1;
+    border-left: 1px solid #f0f0f0;
+    overflow: hidden;
+    transition: 1s;
+}
+
+.nav {
+    display: flex;
+    flex-direction: column;
+}
+
+.nav-item {
+    text-align: center;
+}
+
+.nav-close {
+    position: absolute;
+    top: .5rem;
+    right: .5rem;
+    width: 1.5rem;
+    height: 1.5rem;
+    cursor: pointer;
+}

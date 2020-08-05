@@ -1,7 +1,18 @@
-.login-form {
-    margin-top: 5vh;
+body {
+    font-family: 'Playfair Display', serif!important;
+    font-size: 1.5rem!important;
 }
 
-.register-form {
-    margin-top: 5vh;
+.padding {
+    padding: .5rem;
+}
+
+.margin {
+    margin: .5rem;
+}
+
+.shadow {
+    -webkit-box-shadow: 0px 0px 10px 10px rgba(240,240,240,1);
+    -moz-box-shadow: 0px 0px 10px 10px rgba(240,240,240,1);
+    box-shadow: 0px 0px 10px 10px rgba(240,240,240,1);
 }
