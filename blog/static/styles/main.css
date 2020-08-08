@@ -33,3 +33,20 @@ body {
     color: #F4A460;
     padding: .5rem 1rem;
 }
+
+.flash {
+    border: 1px solid;
+    font-size: .9rem;
+    text-align: center;
+    border-radius: .5rem;
+}
+
+.flash-danger {
+    border-color: #DC143C;
+    color: #DC143C;
+}
+
+.flash-success {
+    border-color: #3CB371;
+    color: #3CB371;
+}

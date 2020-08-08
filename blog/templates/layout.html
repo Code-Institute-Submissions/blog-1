@@ -39,9 +39,11 @@
       alt="Close button.">
     <ul class="nav padding">
       {% if current_user.is_authenticated %}
+      <li class="nav-item padding margin"><a href="{{ url_for('main.home') }}">Home</a></li>
       <li class="nav-item padding margin"><a href="{{ url_for('users.account') }}">Account</a></li>
       <li class="nav-item padding margin"><a href="{{ url_for('users.logout') }}">Logout</a></li>
       {% else %}
+      <li class="nav-item padding margin"><a href="{{ url_for('main.home') }}">Home</a></li>
       <li class="nav-item padding margin"><a href="{{ url_for('users.register') }}">Sign-up</a></li>
       <li class="nav-item padding margin"><a href="{{ url_for('users.login') }}">Login</a></li>
       {% endif %}
@@ -52,7 +54,13 @@
   <main>
     <!-- Display any flashed messages from routes. -->
     <section class="flash-message">
-      
+      {% with messages = get_flashed_messages(with_categories=true) %}
+      {% if messages %}
+      {% for category, message in messages %}
+      <div class="flash flash-{{ category }} padding margin">{{ message }}</div>
+      {% endfor %}
+      {% endif %}
+      {% endwith %}
     </section>
     <!-- Content Block -->
     {% block content %}
