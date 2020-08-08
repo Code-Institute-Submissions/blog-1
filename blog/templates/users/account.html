@@ -1,47 +1,43 @@
 {% extends "layout.html" %}
 
 {% block content %}
-<div class="card mb-3 mx-auto" style="max-width: 540px;">
-  <div class="row no-gutters mx-auto">
-    <div class="col-md-4 my-4">
-      <img src="{{ profile_pic }}" class="img-thumbnail" alt="..." width=125 height=125 style="border: none;">
-    </div>
-    <div class="col-md-8">
-      <div class="card-body">
-        <h5 class="card-title border-bottom">{{ current_user.username }}</h5>
-        <form method="POST" action="" enctype="multipart/form-data">
-          {{ form.hidden_tag() }}
-          <fieldset class="form-group">
-            <div class="form-group">
-              {{ form.username.label(class="form-control-label") }}
-              <!-- Display any error occured during data validation. -->
-              {% if form.username.errors %}
-              {{ form.username(class="form-control is-invalid") }}
-              <div class="invalid-feedback">
-                {% for error in form.username.errors %}
-                <span>{{ error }}</span>
-                {% endfor %}
-              </div>
-              {% else %}
-              {{ form.username(class="form-control") }}
-              {% endif %}
-            </div>
-            <div class="form-group">
-              {{ form.profile_pic.label() }}
-              {{ form.profile_pic(class="form-control-file") }}
-              {% if form.profile_pic.errors %}
-              {% for error in form.profile_pic.errors %}
-              <span class="text-danger">{{ error }}</span>
-              {% endfor %}
-              {% endif %}
-            </div>
-          </fieldset>
-          <div class="form-group">
-            {{ form.submit(class="btn btn-outline-info") }}
+<div class="padding">
+  <div class="account-profile-pic-container">
+    <img class="account-profile-pic padding" src="{{ profile_pic }}" alt="Profile picture.">
+  </div>
+  <div class="account-username">{{ current_user.username }}</div>
+  <div class="account-email">{{ current_user.email }}</div>
+  <div class="form padding">
+    <form method="POST" action="/account" enctype="multipart/form-data">
+      {{ form.hidden_tag() }}
+      <fieldset class="padding">
+        <legend class="form-legend border-bottom padding">Update Account</legend>
+        <div class="form-fieldgroup padding">
+          {{ form.username.label(class="form-field-label padding") }}
+          <!-- Display any error occured during data validation. -->
+          {% if form.username.errors %}
+          {{ form.username(class="form-field-error padding") }}
+          <div class="form-error">
+            {% for error in form.username.errors %}
+            <span class="form-error-message">{{ error }}</span>
+            {% endfor %}
           </div>
-        </form>
-      </div>
-    </div>
+          {% else %}
+          {{ form.username(class="form-field padding") }}
+          {% endif %}
+        </div>
+        <div class="form-fieldgroup padding">
+          {{ form.profile_pic.label(class="form-field-label padding") }}
+          {{ form.profile_pic() }}
+          {% if form.profile_pic.errors %}
+          {% for error in form.profile_pic.errors %}
+          <span class="form-error-message">{{ error }}</span>
+          {% endfor %}
+          {% endif %}
+        </div>
+      </fieldset>
+      {{ form.submit(class="form-button btn") }}
+    </form>
   </div>
 </div>
 {% endblock content %}
