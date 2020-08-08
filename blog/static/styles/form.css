@@ -29,3 +29,11 @@
     font-size: .9rem;
     color: #DC143C;
 }
+
+.form-message {
+    font-size: .9rem;
+}
+
+.form-message a {
+    color: #F4A460;
+}

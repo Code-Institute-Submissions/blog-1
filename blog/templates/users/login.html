@@ -36,7 +36,10 @@
                 {% endif %}
             </div>
         </fieldset>
-        {{ form.submit(class="form-button btn") }}
+        <div>
+            {{ form.submit(class="form-button btn") }}
+        </div>
+        <span class="form-message padding margin">Dont have an account? <a href="{{ url_for('users.register') }}">Sign-up now.</a></span>
     </form>
 </div>
 {% endblock content %}
