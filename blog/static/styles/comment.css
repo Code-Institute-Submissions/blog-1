@@ -1,0 +1,13 @@
+.comment {
+    display: flex;
+}
+
+.comment-profile-pic {
+    width: 32px;
+    height: 32px;
+}
+
+.comment-content {
+    text-indent: 1rem;
+    font-size: 1.2rem;
+}

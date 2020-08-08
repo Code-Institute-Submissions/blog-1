@@ -1,4 +1,34 @@
 {% extends "layout.html" %}
 
 {% block content %}
+<div class="posts padding">
+    <div class="post padding">
+        <div class="post-profile-pic-container">
+            <img class="post-profile-pic" src="{{ url_for('static', filename='icons/menu.png') }}" alt="">
+        </div>
+        <div class="post-info border-bottom padding">
+            <span class="post-title">New post title</span>
+            <span class="post-date">2020 08 08</span>
+        </div>
+        <p class="post-content padding border-bottom">Lorem ipsum dolor sit amet consectetur adipisicing elit. Ipsum repellendus quo atque ut facere dolorem ab libero doloremque ratione asperiores expedita minus amet magni commodi, cumque corporis voluptatibus dolor eaque?</p>
+    </div>
+    <div class="comment padding border-bottom">
+        <div class="comment-profile-pic-container padding">
+            <img class="comment-profile-pic" src="{{ url_for('static', filename='icons/menu.png') }}" alt="">
+        </div>
+        <p class="comment-content">Lorem ipsum dolor sit, amet consectetur adipisicing elit. Alias, magnam. Praesentium adipisci quod est id ab error quisquam omnis soluta. Quaerat molestias recusandae obcaecati a, expedita incidunt sed ratione doloremque?</p>
+    </div>
+    <div class="comment padding border-bottom">
+        <div class="comment-profile-pic-container padding">
+            <img class="comment-profile-pic" src="{{ url_for('static', filename='icons/menu.png') }}" alt="">
+        </div>
+        <p class="comment-content">Lorem ipsum dolor sit, amet consectetur adipisicing elit. Alias, magnam. Praesentium adipisci quod est id ab error quisquam omnis soluta. Quaerat molestias recusandae obcaecati a, expedita incidunt sed ratione doloremque?</p>
+    </div>
+    <div class="comment padding border-bottom">
+        <div class="comment-profile-pic-container padding">
+            <img class="comment-profile-pic" src="{{ url_for('static', filename='icons/menu.png') }}" alt="">
+        </div>
+        <p class="comment-content">Lorem ipsum dolor sit, amet consectetur adipisicing elit. Alias, magnam. Praesentium adipisci quod est id ab error quisquam omnis soluta. Quaerat molestias recusandae obcaecati a, expedita incidunt sed ratione doloremque?</p>
+    </div>
+</div>
 {% endblock content %}

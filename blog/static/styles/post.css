@@ -1,0 +1,40 @@
+.posts {
+    display: flex;
+    flex-direction: column;
+}
+
+.post {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 2rem;
+}
+
+.post-profile-pic-container {
+    align-self: center;
+}
+
+.post-profile-pic {
+    width: 64px;
+    height: 64px;
+}
+
+.post-info {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.post-title {
+    font-size: 1.3rem;
+    font-weight: 700;
+}
+
+.post-date {
+    font-size: .9rem;
+}
+
+.post-content {
+    text-indent: 1rem;
+    font-size: 1.2rem;
+}
