@@ -2,49 +2,41 @@
 
 {% block content %}
 <!-- Login Form -->
-<div class="container login-form">
-    <div class="row">
-        <div class="col-sm-8 col-md-6 col-lg-4 col-xl-4 mx-auto mx-auto">
-            <form method="POST" action="/login">
-                {{ form.hidden_tag() }}
-                <fieldset class="form-group">
-                    <legend class="text-center border-bottom mb-3 pb-3">Login</legend>
-                    <div class="form-group">
-                        {{ form.email.label(class="form-control-label") }}
-                        <!-- Display any error occured during data validation. -->
-                        {% if form.email.errors %}
-                        {{ form.email(class="form-control is-invalid") }}
-                        <div class="invalid-feedback">
-                            {% for error in form.email.errors %}
-                            <span>{{ error }}</span>
-                            {% endfor %}
-                        </div>
-                        {% else %}
-                        {{ form.email(class="form-control") }}
-                        {% endif %}
-                    </div>
-                    <div class="form-group">
-                        {{ form.password.label(class="form-control-label") }}
-
-                        <!-- Display any error occured during data validation. -->
-                        {% if form.password.errors %}
-                        {{ form.password(class="form-control is-invalid") }}
-                        <div class="invalid-feedback">
-                            {% for error in form.password.errors %}
-                            <span>{{ error }}</span>
-                            {% endfor %}
-                        </div>
-                        {% else %}
-                        {{ form.password(class="form-control") }}
-                        {% endif %}
-                    </div>
-                </fieldset>
-                <div class="form-group">
-                    {{ form.submit(class="btn btn-outline-info") }}
+<div class="form padding">
+    <form method="POST" action="">
+        {{ form.hidden_tag() }}
+        <fieldset class="padding">
+            <legend class="form-legend border-bottom padding">Login</legend>
+            <div class="form-fieldgroup padding">
+                {{ form.email.label(class="form-field-label padding") }}
+                <!-- Display any error occured during data validation. -->
+                {% if form.email.errors %}
+                {{ form.email(class="form-field-error padding") }}
+                <div class="form-error">
+                    {% for error in form.email.errors %}
+                    <span class="form-error-message">{{ error }}</span>
+                    {% endfor %}
                 </div>
-            </form>
-            <span><small>Dont have an account? <a href="{{ url_for('users.register') }}">Sign-up now.</a></small></span>
-        </div>
-    </div>
+                {% else %}
+                {{ form.email(class="form-field padding") }}
+                {% endif %}
+            </div>
+            <div class="form-fieldgroup padding">
+                {{ form.password.label(class="form-field-label padding") }}
+                <!-- Display any error occured during data validation. -->
+                {% if form.password.errors %}
+                {{ form.password(class="form-field-error padding") }}
+                <div class="form-error">
+                    {% for error in form.password.errors %}
+                    <span class="form-error-message">{{ error }}</span>
+                    {% endfor %}
+                </div>
+                {% else %}
+                {{ form.password(class="form-field padding") }}
+                {% endif %}
+            </div>
+        </fieldset>
+        {{ form.submit(class="form-button btn") }}
+    </form>
 </div>
 {% endblock content %}

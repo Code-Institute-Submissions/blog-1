@@ -1,0 +1,31 @@
+.form {
+
+}
+
+.form-legend {
+    text-align: center;
+}
+
+.form-fieldgroup {
+    display: flex;
+    flex-direction: column;
+}
+
+.form-field-error {
+    border: 2px solid #DC143C;
+    outline: none;
+}
+
+.form-field:focus {
+    border: 2px solid #F4A460;
+    outline: none;
+}
+
+.form-button {
+    margin: .5rem 0 0 1rem;
+}
+
+.form-error-message {
+    font-size: .9rem;
+    color: #DC143C;
+}
