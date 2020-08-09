@@ -1,7 +1,8 @@
 from flask import Blueprint, render_template, redirect, url_for, request
 from flask_login import login_required, current_user
 from blog.posts.forms import CreateOrUpdatePostForm
-from blog.models import Post, User
+from blog.comments.forms import CommentForm
+from blog.models import Post, User, Comment
 
 # Exporting post routes.
 posts = Blueprint("posts", __name__)
@@ -48,3 +49,20 @@ def delete_post(post_id):
     post = Post.objects.get_or_404(id=post_id)
     post.delete()
     return redirect(url_for("main.home"))
+
+# Comment post route.
+@posts.route("/post/<post_id>", methods=["GET", "POST"])
+@login_required
+def comment_post(post_id):
+    post = Post.objects.get_or_404(id=post_id)
+    comments = Comment.objects(post=post)
+    comment_form = CommentForm()
+    if comment_form.validate_on_submit():
+        new_comment = Comment(
+            author=post.author,
+            post=post,
+            content=comment_form.content.data
+        )
+        new_comment.save()
+        return redirect(url_for("posts.comment_post", post_id=post_id))
+    return render_template("posts/comment_post.html", post=post, form=comment_form, comments=comments)

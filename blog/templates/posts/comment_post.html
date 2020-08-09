@@ -1,0 +1,55 @@
+{% extends "layout.html" %}
+
+{% block content %}
+<div class="posts padding">
+    <div class="post padding">
+        <div class="post-profile-pic-container">
+            <img class="post-profile-pic"
+                src="{{ url_for('static', filename='profile_pics/' + post.author.profile_pic ) }}" alt="">
+        </div>
+        <div class="post-info border-bottom padding">
+            <a href="{{ url_for('posts.update_post', post_id=post.id) }}" class="post-title">{{ post.title }}</a>
+            <span class="post-date">{{ post.date }}</span>
+        </div>
+        <p class="post-content padding border-bottom">{{ post.content }}</p>
+    </div>
+    {% if current_user == post.author %}
+    <div class="post-actions padding">
+        <a class="btn" href="#">Update</a>
+        <a class="btn flash-danger" href="#">Delete</a>
+    </div>
+    {% endif %}
+    <div class="form padding">
+        <form method="POST" action="">
+            {{ form.hidden_tag() }}
+            <fieldset class="padding">
+                <div class="form-fieldgroup padding">
+                    {{ form.content.label(class="form-field-label padding") }}
+                    <!-- Display any error occured during data validation. -->
+                    {% if form.content.errors %}
+                    {{ form.content(class="form-field-error padding") }}
+                    <div class="form-error">
+                        {% for error in form.content.errors %}
+                        <span class="form-error-message">{{ error }}</span>
+                        {% endfor %}
+                    </div>
+                    {% else %}
+                    {{ form.content(class="form-field padding") }}
+                    {% endif %}
+                </div>
+            </fieldset>
+            <div>
+                {{ form.submit(class="form-button btn") }}
+            </div>
+        </form>
+    </div>
+    {% for comment in comments %}
+    <div class="comment padding border-bottom">
+        <div class="comment-profile-pic-container padding">
+            <img class="comment-profile-pic" src="{{ url_for('static', filename='profile_pics/' + comment.author.profile_pic) }}" alt="">
+        </div>
+        <p class="comment-content">{{ comment.content }}</p>
+    </div>
+    {% endfor %}
+</div>
+{% endblock content %}

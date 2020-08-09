@@ -9,5 +9,10 @@
 
 .comment-content {
     text-indent: 1rem;
+    overflow-wrap: initial;
     font-size: 1.2rem;
+}
+
+.comment-profile-pic {
+    border-radius: 50%;
 }

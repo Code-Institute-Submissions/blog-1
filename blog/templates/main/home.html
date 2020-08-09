@@ -8,7 +8,7 @@
             <img class="post-profile-pic" src="{{ url_for('static', filename='profile_pics/' + post.author.profile_pic ) }}" alt="">
         </div>
         <div class="post-info border-bottom padding">
-            <a href="{{ url_for('posts.update_post', post_id=post.id) }}" class="post-title">{{ post.title }}</a>
+            <a href="{{ url_for('posts.comment_post', post_id=post.id) }}" class="post-title">{{ post.title }}</a>
             <span class="post-date">{{ post.date }}</span>
         </div>
         <p class="post-content padding border-bottom">{{ post.content }}</p>
