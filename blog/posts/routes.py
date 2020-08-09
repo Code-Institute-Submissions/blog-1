@@ -40,3 +40,11 @@ def update_post(post_id):
         update_form.title.data = post.title
         update_form.content.data = post.content
     return render_template("posts/create_or_update_post.html", form=update_form, legend="Update Post")
+
+# Post delete route.
+@posts.route("/post/<post_id>/delete", methods=["GET"])
+@login_required
+def delete_post(post_id):
+    post = Post.objects.get_or_404(id=post_id)
+    post.delete()
+    return redirect(url_for("main.home"))
