@@ -6,10 +6,10 @@
     <form method="POST" action="">
         {{ form.hidden_tag() }}
         <fieldset class="padding">
-            <legend class="form-legend border-bottom padding">New Post</legend>
+            <legend class="form-legend border-bottom padding">{{ legend }}</legend>
             <div class="form-fieldgroup padding">
                 {{ form.title.label(class="form-field-label padding") }}
-                <!-- Displat any errors occured during data validation. -->
+                <!-- Display any errors occured during data validation. -->
                 {% if form.title.errors %}
                 {{ form.title(class="form-field-error padding") }}
                 <div class="form-error">
@@ -23,7 +23,7 @@
             </div>
             <div class="form-fieldgroup padding">
                 {{ form.content.label(class="form-field-label padding") }}
-                <!-- Displat any errors occured during data validation. -->
+                <!-- Display any errors occured during data validation. -->
                 {% if form.content.errors %}
                 {{ form.content(class="form-field-error form-textarea padding") }}
                 <div class="form-error">

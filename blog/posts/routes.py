@@ -1,6 +1,6 @@
-from flask import Blueprint, render_template, redirect, url_for
+from flask import Blueprint, render_template, redirect, url_for, request
 from flask_login import login_required, current_user
-from blog.posts.forms import CreatePostForm
+from blog.posts.forms import CreateOrUpdatePostForm
 from blog.models import Post, User
 
 # Exporting post routes.
@@ -10,7 +10,7 @@ posts = Blueprint("posts", __name__)
 @posts.route("/post/create", methods=["GET", "POST"])
 @login_required
 def create_post():
-    create_post_form = CreatePostForm()
+    create_post_form = CreateOrUpdatePostForm()
     author = User.objects(id=current_user.id).first()
     if create_post_form.validate_on_submit():
         # Creating new Post.
@@ -22,4 +22,21 @@ def create_post():
         # Saving Post to database.
         new_post.save()
         return redirect(url_for("main.home"))
-    return render_template("posts/create_post.html", form=create_post_form)
+    return render_template("posts/create_or_update_post.html", form=create_post_form, legend="New Post")
+
+# Post update route.
+@posts.route("/post/<post_id>/update", methods=["GET", "POST"])
+@login_required
+def update_post(post_id):
+    update_form = CreateOrUpdatePostForm()
+    post = Post.objects.get_or_404(id=post_id)
+    if update_form.validate_on_submit():
+        post.title = update_form.title.data
+        post.content = update_form.content.data
+        post.save()
+        return redirect(url_for("main.home"))
+    # Populating form.
+    elif request.method == "GET":
+        update_form.title.data = post.title
+        update_form.content.data = post.content
+    return render_template("posts/create_or_update_post.html", form=update_form, legend="Update Post")
