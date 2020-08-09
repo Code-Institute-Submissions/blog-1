@@ -22,7 +22,10 @@ body {
 }
 
 .flash-message {
+    display: flex;
+    flex-direction: column;
     min-height: 5rem;
+    justify-content: center;
 }
 
 .btn {

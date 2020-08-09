@@ -11,6 +11,7 @@ login_manager = LoginManager()
 def create_app(config_class=Config):
     from blog.main.routes import main
     from blog.users.routes import users
+    from blog.posts.routes import posts
 
     app = Flask(__name__)
     app.config.from_object(Config)
@@ -21,5 +22,6 @@ def create_app(config_class=Config):
 
     app.register_blueprint(main)
     app.register_blueprint(users)
+    app.register_blueprint(posts)
 
     return app

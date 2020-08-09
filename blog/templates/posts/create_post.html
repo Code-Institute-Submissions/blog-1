@@ -1,0 +1,44 @@
+{% extends "layout.html" %}
+
+{% block content %}
+<!-- Create Post Form -->
+<div class="form padding">
+    <form method="POST" action="">
+        {{ form.hidden_tag() }}
+        <fieldset class="padding">
+            <legend class="form-legend border-bottom padding">New Post</legend>
+            <div class="form-fieldgroup padding">
+                {{ form.title.label(class="form-field-label padding") }}
+                <!-- Displat any errors occured during data validation. -->
+                {% if form.title.errors %}
+                {{ form.title(class="form-field-error padding") }}
+                <div class="form-error">
+                    {% for error in form.title.errors %}
+                    <span class="form-error-message">{{ error }}</span>
+                    {% endfor %}
+                </div>
+                {% else %}
+                {{ form.title(class="form-field padding")}}
+                {% endif %}
+            </div>
+            <div class="form-fieldgroup padding">
+                {{ form.content.label(class="form-field-label padding") }}
+                <!-- Displat any errors occured during data validation. -->
+                {% if form.content.errors %}
+                {{ form.content(class="form-field-error form-textarea padding") }}
+                <div class="form-error">
+                    {% for error in form.content.errors %}
+                    <span class="form-error-message">{{ error }}</span>
+                    {% endfor %}
+                </div>
+                {% else %}
+                {{ form.content(class="form-field form-textarea padding")}}
+                {% endif %}
+            </div>
+        </fieldset>
+        <div>
+            {{ form.submit(class="form-button btn")}}
+        </div>
+    </form>
+</div>
+{% endblock content %}

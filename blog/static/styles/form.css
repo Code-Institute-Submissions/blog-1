@@ -37,3 +37,8 @@
 .form-message a {
     color: #F4A460;
 }
+
+.form-textarea {
+    height: 7rem;
+    resize: none;
+}

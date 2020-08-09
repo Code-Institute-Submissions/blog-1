@@ -1,3 +1,4 @@
+from datetime import datetime
 from blog import db, login_manager
 from flask_login import UserMixin
 
@@ -8,6 +9,14 @@ class User(UserMixin, db.Document):
     email = db.StringField(required=True)
     password = db.StringField(required=True, max_length=255)
     profile_pic = db.StringField(default="default.png")
+
+# Data model for creating Post object.
+class Post(db.Document):
+    meta = {"collection": "posts"}
+    title = db.StringField(required=True, max_length=32)
+    content = db.StringField(required=True, max_length=255)
+    date = db.DateField(required=True, default=datetime.utcnow)
+    author = db.ReferenceField(User)
 
 # Load User to current session.
 @login_manager.user_loader
