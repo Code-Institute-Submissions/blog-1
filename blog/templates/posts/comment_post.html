@@ -15,8 +15,8 @@
     </div>
     {% if current_user == post.author %}
     <div class="post-actions padding">
-        <a class="btn" href="#">Update</a>
-        <a class="btn flash-danger" href="#">Delete</a>
+        <a class="btn" href="{{ url_for('posts.update_post', post_id=post.id) }}">Update</a>
+        <button id="deletePostButton" class="btn flash-danger">Delete</button>
     </div>
     {% endif %}
     <div class="form padding">
@@ -46,10 +46,19 @@
     {% for comment in comments %}
     <div class="comment padding border-bottom">
         <div class="comment-profile-pic-container padding">
-            <img class="comment-profile-pic" src="{{ url_for('static', filename='profile_pics/' + comment.author.profile_pic) }}" alt="">
+            <img class="comment-profile-pic"
+                src="{{ url_for('static', filename='profile_pics/' + comment.author.profile_pic) }}" alt="">
         </div>
         <p class="comment-content">{{ comment.content }}</p>
     </div>
     {% endfor %}
+</div>
+
+<div id="modal" class="modal-background">
+    <div class="modal padding">
+        <img id="modalCloseButton" class="modal-close" src="{{ url_for('static', filename='icons/close.png') }}" alt="Close button.">
+        <div class="modal-message padding">Are you sure you want to delete the post?</div>
+        <a class="btn flash-danger margin modal-btn" href="{{ url_for('posts.delete_post', post_id=post.id) }}">Delete</a>
+    </div>
 </div>
 {% endblock content %}

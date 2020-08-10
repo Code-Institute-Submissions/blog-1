@@ -18,7 +18,7 @@
   <link rel="stylesheet" href="{{ url_for('static', filename='styles/account.css') }}" type="text/css">
   <link rel="stylesheet" href="{{ url_for('static', filename='styles/post.css') }}" type="text/css">
   <link rel="stylesheet" href="{{ url_for('static', filename='styles/comment.css') }}" type="text/css">
-  
+  <link rel="stylesheet" href="{{ url_for('static', filename='styles/modal.css') }}" type="text/css">
 
   {% if title %}
   <title>Blog - {{ title }}</title>
@@ -61,7 +61,7 @@
       {% with messages = get_flashed_messages(with_categories=true) %}
       {% if messages %}
       {% for category, message in messages %}
-      <div class="flash flash-{{ category }} padding margin">{{ message }}</div>
+      <div id="flashMessage" class="flash flash-{{ category }} padding margin">{{ message }}</div>
       {% endfor %}
       {% endif %}
       {% endwith %}

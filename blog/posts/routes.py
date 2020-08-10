@@ -35,7 +35,7 @@ def update_post(post_id):
         post.title = update_form.title.data
         post.content = update_form.content.data
         post.save()
-        return redirect(url_for("main.home"))
+        return redirect(url_for("posts.comment_post", post_id=post_id))
     # Populating form.
     elif request.method == "GET":
         update_form.title.data = post.title
@@ -46,8 +46,11 @@ def update_post(post_id):
 @posts.route("/post/<post_id>/delete", methods=["GET"])
 @login_required
 def delete_post(post_id):
+    # Deleting post and all related comments to it.
     post = Post.objects.get_or_404(id=post_id)
+    comments = Comment.objects(post=post)
     post.delete()
+    comments.delete()
     return redirect(url_for("main.home"))
 
 # Comment post route.
@@ -57,9 +60,10 @@ def comment_post(post_id):
     post = Post.objects.get_or_404(id=post_id)
     comments = Comment.objects(post=post)
     comment_form = CommentForm()
+    comment_author = User.objects(id=current_user.id).first()
     if comment_form.validate_on_submit():
         new_comment = Comment(
-            author=post.author,
+            author=comment_author,
             post=post,
             content=comment_form.content.data
         )

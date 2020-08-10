@@ -46,6 +46,7 @@ def register():
 @login_required
 def logout():
     logout_user()
+    flash("You have logged out successfully.", "success")
     return redirect(url_for("users.login"))
 
 # User update route.
