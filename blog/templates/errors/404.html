@@ -1,0 +1,9 @@
+{% extends "layout.html" %}
+
+{% block content %}
+<div class="error-container">
+    <img src="{{ url_for('static', filename='icons/404.png') }}" alt="">
+    <div class="error-code margin">404</div>
+    <div class="error-message margin">Page not found.</div>
+</div>
+{% endblock content %}

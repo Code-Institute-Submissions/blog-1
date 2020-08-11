@@ -1,0 +1,9 @@
+{% extends "layout.html" %}
+
+{% block content %}
+<div class="error-container">
+    <img src="{{ url_for('static', filename='icons/500.png') }}" alt="">
+    <div class="error-code margin">500</div>
+    <div class="error-message margin">Sorry we are having some dificulties on our end.</div>
+</div>
+{% endblock content %}

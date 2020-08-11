@@ -3,7 +3,18 @@
     flex-direction: column;
 }
 
+.posts-info {
+    display: flex;
+    flex-direction: column;
+}
+
 .post {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 2rem;
+}
+
+.post-selected {
     display: flex;
     flex-direction: column;
     margin-bottom: 2rem;
@@ -29,6 +40,8 @@
 .post-title {
     font-size: 1.3rem;
     font-weight: 700;
+    overflow: hidden;
+    text-overflow: ellipsis;
 }
 
 .post-date {
@@ -38,9 +51,46 @@
 .post-content {
     text-indent: 1rem;
     font-size: 1.2rem;
+    width: 100%;
+    overflow: hidden;
+    text-overflow: ellipsis;
 }
 
 .post-author {
     font-size: .9rem;
     text-align: center;
+}
+
+@media screen and (min-width: 768px) {
+    .posts {
+        width: 60%;
+        margin: 0 auto;
+    }
+
+    .posts-info {
+        width: 60%;
+        margin: 0 auto;
+    }
+}
+
+@media screen and (min-width: 1080px) {
+    .posts {
+        flex-direction: row;
+        flex-wrap: wrap;
+        width: 90%;
+        margin: 0 auto;
+        column-gap: 10rem;
+    }
+
+    .post {
+        width: 40%;
+    }
+
+    .posts-info {
+        width: 60%;
+    }
+
+    .post-selected {
+        width: 100%;
+    }
 }

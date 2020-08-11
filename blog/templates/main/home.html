@@ -3,18 +3,18 @@
 {% block content %}
 <div class="posts padding">
     {% for post in posts.items %}
-    <div class="post padding">
+    <a href="{{ url_for('posts.comment_post', post_id=post.id) }}" class="post padding">
         <div class="post-profile-pic-container">
             <img class="post-profile-pic"
                 src="{{ url_for('static', filename='profile_pics/' + post.author.profile_pic ) }}" alt="">
             <div class="post-author">{{ post.author.username }}</div>
         </div>
         <div class="post-info border-bottom padding">
-            <a href="{{ url_for('posts.comment_post', post_id=post.id) }}" class="post-title">{{ post.title }}</a>
+            <div  class="post-title">{{ post.title }}</div>
             <span class="post-date">{{ post.date.date() }}</span>
         </div>
         <p class="post-content padding border-bottom">{{ post.content }}</p>
-    </div>
+    </a>
     {% endfor %}
 </div>
 <!-- Pagination buttons. -->

@@ -1,14 +1,15 @@
 {% extends "layout.html" %}
 
 {% block content %}
-<div class="posts padding">
-    <div class="post padding">
+<div class="posts-info padding">
+    <div class="post-selected padding">
         <div class="post-profile-pic-container">
             <img class="post-profile-pic"
                 src="{{ url_for('static', filename='profile_pics/' + post.author.profile_pic ) }}" alt="">
+            <div class="post-author">{{ post.author.username }}</div>
         </div>
         <div class="post-info border-bottom padding">
-            <a href="{{ url_for('posts.update_post', post_id=post.id) }}" class="post-title">{{ post.title }}</a>
+            <span class="post-title">{{ post.title }}</span>
             <span class="post-date">{{ post.date.date() }}</span>
         </div>
         <p class="post-content padding border-bottom">{{ post.content }}</p>
@@ -48,6 +49,7 @@
         <div class="comment-profile-pic-container padding">
             <img class="comment-profile-pic"
                 src="{{ url_for('static', filename='profile_pics/' + comment.author.profile_pic) }}" alt="">
+            <div class="post-author">{{ post.author.username }}</div>
         </div>
         <p class="comment-content">{{ comment.content }}</p>
     </div>
@@ -58,18 +60,22 @@
     {% for page_num in comments.iter_pages(left_edge=1, right_edge=1, left_current=1, right_current=2) %}
     {% if page_num %}
     {% if comments.page == page_num %}
-    <a class="page-btn page-btn-active margin" href="{{ url_for('posts.comment_post', post_id=post.id, page=page_num) }}">{{ page_num }}</a>
+    <a class="page-btn page-btn-active margin"
+        href="{{ url_for('posts.comment_post', post_id=post.id, page=page_num) }}">{{ page_num }}</a>
     {% else %}
-    <a class="page-btn margin" href="{{ url_for('posts.comment_post', post_id=post.id, page=page_num) }}">{{ page_num }}</a>
+    <a class="page-btn margin"
+        href="{{ url_for('posts.comment_post', post_id=post.id, page=page_num) }}">{{ page_num }}</a>
     {% endif %}
     {% endif %}
     {% endfor %}
 </div>
 <div id="modal" class="modal-background">
     <div class="modal padding">
-        <img id="modalCloseButton" class="modal-close" src="{{ url_for('static', filename='icons/close.png') }}" alt="Close button.">
+        <img id="modalCloseButton" class="modal-close" src="{{ url_for('static', filename='icons/close.png') }}"
+            alt="Close button.">
         <div class="modal-message padding">Are you sure you want to delete the post?</div>
-        <a class="btn flash-danger margin modal-btn" href="{{ url_for('posts.delete_post', post_id=post.id) }}">Delete</a>
+        <a class="btn flash-danger margin modal-btn"
+            href="{{ url_for('posts.delete_post', post_id=post.id) }}">Delete</a>
     </div>
 </div>
 {% endblock content %}

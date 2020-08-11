@@ -24,7 +24,7 @@ body {
 .flash-message {
     display: flex;
     flex-direction: column;
-    min-height: 5rem;
+    min-height: 12rem;
     justify-content: center;
 }
 
@@ -57,17 +57,25 @@ body {
     color: #FFF;
 }
 
+.flash-warning {
+    border-color: #F4A460;
+    background-color: #F4A460;
+    color: #FFF;
+}
+
 .page-btns {
     display: flex;
     flex-direction: row;
 }
 
 .page-btn {
-    width: 2rem;
-    height: 2rem;
+    font-size: 1.3rem;
+    width: 1.7rem;
+    height: 1.7rem;
     border: 1px solid #F4A460;
     text-align: center;
     color: #F4A460;
+    border-radius: .5rem;
 }
 
 .page-btn-active {
