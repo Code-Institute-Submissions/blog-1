@@ -39,3 +39,8 @@
     text-indent: 1rem;
     font-size: 1.2rem;
 }
+
+.post-author {
+    font-size: .9rem;
+    text-align: center;
+}

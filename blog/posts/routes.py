@@ -57,8 +57,9 @@ def delete_post(post_id):
 @posts.route("/post/<post_id>", methods=["GET", "POST"])
 @login_required
 def comment_post(post_id):
+    page = request.args.get("page", 1, type=int)
     post = Post.objects.get_or_404(id=post_id)
-    comments = Comment.objects(post=post)
+    comments = Comment.objects(post=post).order_by("-date").paginate(page=page, per_page=2)
     comment_form = CommentForm()
     comment_author = User.objects(id=current_user.id).first()
     if comment_form.validate_on_submit():

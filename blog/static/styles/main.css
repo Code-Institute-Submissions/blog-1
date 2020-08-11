@@ -56,3 +56,21 @@ body {
     background-color: #3CB371;
     color: #FFF;
 }
+
+.page-btns {
+    display: flex;
+    flex-direction: row;
+}
+
+.page-btn {
+    width: 2rem;
+    height: 2rem;
+    border: 1px solid #F4A460;
+    text-align: center;
+    color: #F4A460;
+}
+
+.page-btn-active {
+    background-color: #F4A460;
+    color: #FFF;
+}

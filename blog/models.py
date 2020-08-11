@@ -15,7 +15,7 @@ class Post(db.Document):
     meta = {"collection": "posts"}
     title = db.StringField(required=True, max_length=32)
     content = db.StringField(required=True, max_length=255)
-    date = db.DateField(required=True, default=datetime.utcnow)
+    date = db.DateTimeField(required=True, default=datetime.utcnow)
     author = db.ReferenceField(User)
 
 # Data model for Comment object.
@@ -24,6 +24,7 @@ class Comment(db.Document):
     author = db.ReferenceField(User)
     post = db.ReferenceField(Post)
     content = db.StringField(required=True, max_length=255)
+    date = db.DateTimeField(required=True, default=datetime.utcnow)
 
 # Load User to current session.
 @login_manager.user_loader
