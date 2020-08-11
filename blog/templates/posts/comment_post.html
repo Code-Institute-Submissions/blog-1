@@ -49,7 +49,7 @@
         <div class="comment-profile-pic-container padding">
             <img class="comment-profile-pic"
                 src="{{ url_for('static', filename='profile_pics/' + comment.author.profile_pic) }}" alt="">
-            <div class="post-author">{{ post.author.username }}</div>
+            <div class="post-author">{{ comment.author.username }}</div>
         </div>
         <p class="comment-content">{{ comment.content }}</p>
     </div>

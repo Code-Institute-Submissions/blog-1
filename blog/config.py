@@ -4,6 +4,5 @@ import os
 class Config:
     SECRET_KEY = os.environ.get('SECRET_KEY')
     MONGODB_SETTINGS = {
-        "db": "blog",
-        "host": "mongodb://localhost/blog"
-    }
+    'host': "mongodb+srv://Yaoma:pfc0a7aNQiF22Lek@cluster0-xbf5e.mongodb.net/blog?retryWrites=true&w=majority"
+}
