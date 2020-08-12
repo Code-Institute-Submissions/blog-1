@@ -11,6 +11,7 @@
     visibility: hidden;
     opacity: 0;
     transition: .5s;
+    align-items: center;
 }
 
 .modal {
@@ -21,6 +22,7 @@
     padding: 3rem;
     justify-content: center;
     align-items: center;
+    margin: 0 auto;
 }
 
 .modal-message {
