@@ -6,7 +6,7 @@ The main goal of this project is show off the four basic functions of persistent
 
 ## Demo
 
-Live demonstration of a website can be found by the folowing link:
+Live demonstration of a website can be found by the folowing link: http://blog-data-centric-project.herokuapp.com/home
 
 ## UX
 
