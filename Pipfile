@@ -14,6 +14,7 @@ flask-mongoengine = "*"
 flask-bcrypt = "*"
 flask-login = "*"
 pillow = "*"
+gunicorn = "*"
 
 [requires]
 python_version = "3.8"
