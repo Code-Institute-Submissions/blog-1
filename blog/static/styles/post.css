@@ -21,6 +21,10 @@
 }
 
 .post-profile-pic-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    row-gap: .5rem;
     align-self: center;
 }
 
