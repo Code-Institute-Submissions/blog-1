@@ -1,1 +1,1 @@
-web: gunicorn blog.wsgi
+web: python run.py
