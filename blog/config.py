@@ -2,7 +2,7 @@ import os
 
 # Application configurations.
 class Config:
-    SECRET_KEY = os.environ.get('SECRET_KEY')
+    SECRET_KEY = os.environ.get("SECRET_KEY")
     IP = os.environ.get("IP")
     PORT = os.environ.get("PORT")
     MONGODB_SETTINGS = {
